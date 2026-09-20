@@ -1,42 +1,21 @@
-# sv
+# DotTo
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+*Every story detail, connected.*
 
-## Creating a project
+DotTo is a writing companion for authors building rich, interconnected worlds. Upload the documents that shape your story, from outlines and character sheets to setting notes, individual chapters, or an entire manuscript.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Those materials will be organized into a graph-backed RAG knowledge base, connecting the people, places, plotlines, and relationships that matter across your work. Rather than hunting through folders and notes, writers will be able to explore how each detail relates to the rest of the story.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+DotTo will also provide a chat experience for talking directly with your story: examine a character's motivations, trace a relationship, test plot continuity, revisit a setting, or follow a thread through the narrative. It is designed to help writers keep the dots visible as their worlds grow.
 
-To recreate this project with the same configuration:
+## Architecture
 
-```sh
-# recreate this project
-pnpm dlx sv@0.17.0 create --template minimal --types ts --add prettier eslint sveltekit-adapter="adapter:vercel" experimental="versions:kit+features:async,remoteFunctions,explicitEnvironmentVariables,handleRenderingErrors" better-auth="demo:password,github" drizzle="database:postgresql+postgresql:postgres.js+docker:yes" mdsvex paraglide="languageTags:en, es+demo:yes" ai-tools="ide:vscode+tools:mcp,svelte-code-writer,svelte-core-bestpractices,svelte-file-editor+mcpSetup:remote" --install pnpm .
-```
+DotTo is planned as a set of connected layers:
 
-## Developing
+- **Document storage and ingestion:** An S3-compatible object store will retain uploaded files. Their contents will be parsed into searchable passages and identified story entities, such as characters, places, events, and chapters.
+- **Vector retrieval:** Embedded text from those passages will live in a vector database, providing the semantic retrieval layer for retrieval-augmented generation (RAG).
+- **Story knowledge graph:** Entities and their connections will be stored alongside the source material, making relationships and narrative context available for exploration and retrieval.
+- **Graph exploration:** Graphing libraries will visualize the links between characters, settings, events, and plotlines, giving writers a navigable view of their story world.
+- **Grounded story chat and writing tools:** Chat will retrieve relevant passages and graph connections so its responses stay rooted in the story. Planned writing tools will use that same context to help authors develop their work in real time.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Together, these layers are intended to support precise source-aware answers, higher-level exploration of the threads that connect a manuscript, and active support while it is being written.
