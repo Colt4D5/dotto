@@ -3,10 +3,11 @@ import type { Actions } from './$types';
 import type { PageServerLoad } from './$types';
 import { auth } from '#lib/server/auth';
 import { APIError } from 'better-auth/api';
+import { LOGIN_RETURN_PATH } from '#lib';
 
 export const load: PageServerLoad = (event) => {
 	if (event.locals.user) {
-		return redirect(302, '/');
+		return redirect(302, LOGIN_RETURN_PATH);
 	}
 	return {};
 };
@@ -32,7 +33,7 @@ export const actions: Actions = {
 			return fail(500, { message: 'Unexpected error' });
 		}
 
-		return redirect(302, '/');
+		return redirect(302, LOGIN_RETURN_PATH);
 	},
 	signUpEmail: async (event) => {
 		const formData = await event.request.formData();
@@ -56,7 +57,7 @@ export const actions: Actions = {
 			return fail(500, { message: 'Unexpected error' });
 		}
 
-		return redirect(302, '/');
+		return redirect(302, LOGIN_RETURN_PATH);
 	},
 	signInSocial: async (event) => {
 		const formData = await event.request.formData();

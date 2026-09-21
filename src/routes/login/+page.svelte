@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import type { ActionData } from './$types';
+	import { LOGIN_RETURN_PATH } from '#lib';
 
 	let { form }: { form: ActionData } = $props();
 </script>
@@ -28,6 +29,6 @@
 
 <form method="post" action="?/signInSocial" use:enhance>
 	<input type="hidden" name="provider" value="github" />
-	<input type="hidden" name="callbackURL" value="/" />
+	<input type="hidden" name="callbackURL" value="{LOGIN_RETURN_PATH}" />
 	<button>Sign in with GitHub</button>
 </form>
