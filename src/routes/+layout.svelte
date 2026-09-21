@@ -3,16 +3,20 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { locales, localizeHref } from '#lib/paraglide/runtime';
-	import favicon from '#lib/assets/favicon.svg';
 	import { enhance } from '$app/forms';
 	import { LOGIN_PATH, LOGOUT_PATH } from '#lib';
+	import appleTouchIcon from '#lib/assets/apple-touch-icon.png';
+	import favicon32 from '#lib/assets/favicon-32x32.png';
+	import favicon16 from '#lib/assets/favicon-16x16.png';
 
 	let { data, children } = $props();
 	let { user } = $derived(data);
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon}>
+	<link rel="icon" type="image/png" sizes="32x32" href={favicon32}>
+	<link rel="icon" type="image/png" sizes="16x16" href={favicon16}>
 </svelte:head>
 
 <header>
