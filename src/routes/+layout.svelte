@@ -22,11 +22,11 @@
 <header>
 	{#if page.url.pathname !== LOGIN_PATH}
 		{#if user}
-			<form method="post" action={LOGOUT_PATH} use:enhance>
+			<form method="post" action={resolve(LOGOUT_PATH as Path)} use:enhance>
 				<button>Sign out</button>
 			</form>
 		{:else}
-			<p><a href={resolve(LOGIN_PATH)}>Sign in</a></p>
+			<p><a href={resolve(LOGIN_PATH as Path)}>Sign in</a></p>
 		{/if}
 	{/if}
 </header>
