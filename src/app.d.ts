@@ -7,6 +7,13 @@ declare global {
 		interface Locals {
 			user?: User;
 			session?: Session;
+			projects?: Project[];
+		}
+
+		interface Project {
+			id: string;
+			name: string;
+			description: string;
 		}
 
 		// interface Error {}
