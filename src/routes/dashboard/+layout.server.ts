@@ -8,8 +8,8 @@ export const load: LayoutServerLoad = async ({ locals, fetch }) => {
 		return redirect(302, LOGIN_PATH);
 	}
 
-	const res = await fetch(`/api/${API_VERSION}/projects`);
+	const res = await fetch(`/api/${API_VERSION}/projects?limit=3`);
 	const data = await res.json();
 	
-	return { projects: data };
+	return { projects: data.projects };
 };

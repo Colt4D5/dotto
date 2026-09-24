@@ -1,6 +1,6 @@
 <script lang="ts">
   const { data, children } = $props();
-  const { projects } = $derived(data.projects);
+  const { projects } = $derived(data);
 </script>
 
 <div id="dashboard-container">
@@ -12,7 +12,7 @@
 				{#each projects as project (project.id) }
 					<li><a href={`/dashboard/projects/${project.id}`}>{project.name}</a></li>
 				{/each}
-				<li><a href="/dashboard/projects/new">New Project</a></li>
+				<li><a href="/dashboard/projects/new">+ Create New Project</a></li>
 			</ul>
     </ul>
 	</div>
