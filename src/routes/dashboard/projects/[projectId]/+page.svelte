@@ -1,7 +1,7 @@
 <script lang="ts">
-  const { data } = $props();
-  const { projects } = $derived(data.projects);
+	const { data } = $props();
+	const { project } = $derived(data);
 </script>
 
-<h1>{projects.name}</h1>
-<p>{projects.description}</p>
+<h1>{project.name}</h1>
+<p>{project.description}</p>

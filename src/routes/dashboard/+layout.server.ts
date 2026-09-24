@@ -10,6 +10,6 @@ export const load: LayoutServerLoad = async ({ locals, fetch }) => {
 
 	const res = await fetch(`/api/${API_VERSION}/projects?limit=3`);
 	const data = await res.json();
-	
+
 	return { projects: data.projects };
 };

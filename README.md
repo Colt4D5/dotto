@@ -1,6 +1,6 @@
 # DotTo
 
-*Every story detail, connected.*
+_Every story detail, connected._
 
 DotTo is a writing companion for authors building rich, interconnected worlds. Upload the documents that shape your story, from outlines and character sheets to setting notes, individual chapters, or an entire manuscript.
 
@@ -19,3 +19,16 @@ DotTo is planned as a set of connected layers:
 - **Grounded story chat and writing tools:** Chat will retrieve relevant passages and graph connections so its responses stay rooted in the story. Planned writing tools will use that same context to help authors develop their work in real time.
 
 Together, these layers are intended to support precise source-aware answers, higher-level exploration of the threads that connect a manuscript, and active support while it is being written.
+
+## Database migrations
+
+Drizzle migrations are stored in `drizzle/`. Generate a migration after each schema change, review the generated SQL, and apply reviewed migrations through the deployment workflow:
+
+```sh
+pnpm db:generate
+pnpm db:migrate
+```
+
+Do not use `pnpm db:push` against production databases. It bypasses the reviewed migration history.
+
+Projects use UUID primary keys. Before deploying this schema to a populated database that has integer project IDs, create and review a dedicated data migration that adds UUID values, updates every dependent foreign key and external reference, and only then swaps the primary key. The initial generated migration is a baseline for new environments and must not be applied directly to an existing database.

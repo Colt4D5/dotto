@@ -1,20 +1,25 @@
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { getProjectsForUser } from '#lib/server/projects';
+import { getProjectForUser } from '#lib/server/projects';
+
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 export const GET: RequestHandler = async ({ locals, params: { projectId } }) => {
-  const userId = locals.user?.id;
+	const userId = locals.user?.id;
 
-  if (!userId) {
-    throw error(401, 'Unauthorized');
-  }
+	if (!userId) {
+		throw error(401, 'Unauthorized');
+	}
 
-  const projects = await getProjectsForUser(userId);
-  const project = projects.find((p) => p.id === Number(projectId));
+	if (!UUID_PATTERN.test(projectId)) {
+		throw error(400, 'Invalid project ID');
+	}
 
-  if (!project) {
-    throw error(404, 'Project not found');
-  }
+	const project = await getProjectForUser(userId, projectId);
 
-  return new Response(JSON.stringify({ projects: project }));
+	if (!project) {
+		throw error(404, 'Project not found');
+	}
+
+	return new Response(JSON.stringify({ project }));
 };
