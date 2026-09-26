@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { API_VERSION } from '$app/env/public';
-	import { invalidateAll } from '$app/navigation';
+	import { refreshAll } from '$app/navigation';
 
 	const { data } = $props();
 	const { project, documents } = $derived(data);
@@ -32,7 +32,7 @@
 			form.reset();
 			selectedDocumentId = '';
 			uploadSuccess = true;
-			await invalidateAll();
+			await refreshAll();
 		} catch (error) {
 			uploadError = error instanceof Error ? error.message : 'Unable to upload the file.';
 		} finally {
