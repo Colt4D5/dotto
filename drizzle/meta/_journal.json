@@ -8,6 +8,13 @@
       "when": 1790287850002,
       "tag": "0000_purple_riptide",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790288172737,
+      "tag": "0002_document_storage",
+      "breakpoints": true
     }
   ]
 }

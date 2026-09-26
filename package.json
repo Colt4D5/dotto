@@ -45,14 +45,24 @@
 		"typescript-eslint": "^8.60.1",
 		"vite": "^8.0.16"
 	},
-  "imports": {
+	"imports": {
 		"#lib": {
-			"types": ["./src/lib/index.d.ts", "./src/lib/index.ts"],
+			"types": [
+				"./src/lib/index.d.ts",
+				"./src/lib/index.ts"
+			],
 			"default": "./src/lib/index.js"
 		},
 		"#lib/*": {
-			"types": ["./src/lib/*.d.ts", "./src/lib/*.ts"],
+			"types": [
+				"./src/lib/*.d.ts",
+				"./src/lib/*.ts"
+			],
 			"default": "./src/lib/*"
 		}
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.1140.0",
+		"@aws-sdk/s3-request-presigner": "^3.1140.0"
 	}
 }
