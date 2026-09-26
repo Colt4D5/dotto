@@ -1,6 +1,6 @@
 {
-  "id": "8b6a9412-3df1-4d9f-958c-ff031909aebb",
-  "prevId": "f3adba6b-7dc4-44f0-b659-7cb4529ce35e",
+  "id": "e20c646b-5f13-47bd-b7bd-184a5ed6b14e",
+  "prevId": "8b6a9412-3df1-4d9f-958c-ff031909aebb",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -287,6 +287,13 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
+        "document_versions_storage_key_unique": {
+          "name": "document_versions_storage_key_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "storage_key"
+          ]
+        },
         "document_versions_document_id_version_number_unique": {
           "name": "document_versions_document_id_version_number_unique",
           "nullsNotDistinct": false,

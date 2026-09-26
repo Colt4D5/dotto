@@ -15,6 +15,13 @@
       "when": 1790288172737,
       "tag": "0002_document_storage",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790445149547,
+      "tag": "0002_lean_black_panther",
+      "breakpoints": true
     }
   ]
 }

@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres
+    image: pgvector/pgvector:pg17
     restart: always
     ports:
       - 5432:5432
@@ -9,6 +9,6 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: local
     volumes:
-      - pgdata:/var/lib/postgresql
+      - pgdata:/var/lib/postgresql/data
 volumes:
   pgdata:

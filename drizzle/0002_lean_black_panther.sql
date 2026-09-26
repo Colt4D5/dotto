@@ -1,0 +1,1 @@
+ALTER TABLE "document_versions" ADD CONSTRAINT "document_versions_storage_key_unique" UNIQUE("storage_key");

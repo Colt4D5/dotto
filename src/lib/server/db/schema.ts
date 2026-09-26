@@ -102,6 +102,7 @@ export const documentVersions = pgTable(
 	},
 	(table) => [
 		index('document_versions_document_id_idx').on(table.documentId),
+		unique('document_versions_storage_key_unique').on(table.storageKey),
 		unique('document_versions_document_id_version_number_unique').on(
 			table.documentId,
 			table.versionNumber
