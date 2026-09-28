@@ -17,6 +17,7 @@ const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3
 
 export const GET: RequestHandler = async ({ url }) => {
 	const documentVersionId = url.searchParams.get('documentVersionId');
+	console.log("Document version ID:", documentVersionId);
 
 	if (!documentVersionId || isNaN(Number(documentVersionId))) {
 		throw error(400, 'Invalid document version ID');

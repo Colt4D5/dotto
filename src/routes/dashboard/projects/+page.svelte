@@ -5,9 +5,9 @@
 
 <h1>Projects</h1>
 
-{#if projects && projects.projects.projects.length > 0}
+{#if projects && projects.results.length > 0}
   <ul>
-    {#each projects.projects.projects as project (project.id)}
+    {#each projects.results as project (project.id)}
       <li>
         <h2>{project.name}</h2>
         <p>{project.description}</p>

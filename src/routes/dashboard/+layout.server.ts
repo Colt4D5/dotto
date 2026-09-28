@@ -1,15 +1,21 @@
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 import { LOGIN_PATH } from '#lib';
-import { API_VERSION } from '$app/env/public';
+import {
+	getProjectsForUser,
+} from '#lib/server/projects';
 
-export const load: LayoutServerLoad = async ({ locals, fetch }) => {
-	if (!locals.user) {
+export const load: LayoutServerLoad = async ({ locals }) => {
+	const user = locals.user;
+	if (!user) {
 		return redirect(302, LOGIN_PATH);
 	}
 
-	const res = await fetch(`/api/${API_VERSION}/projects?limit=3`);
-	const data = await res.json();
+	const projects = await getProjectsForUser(user.id, { limit: 3, offset: 0 });
 
-	return { projects: data.projects };
+	return {
+		projects: projects.results,
+		total: projects.total,
+		remaining: projects.remaining
+	};
 };

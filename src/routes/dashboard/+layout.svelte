@@ -1,6 +1,6 @@
 <script lang="ts">
   const { data, children } = $props();
-  const { projects, total, remaining } = $derived(data.projects);
+  const { projects, total, remaining } = $derived(data);
 </script>
 
 <div id="dashboard-container">

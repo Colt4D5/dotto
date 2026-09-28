@@ -97,6 +97,29 @@
 
 		return fallback;
 	}
+
+	async function downloadDocument(documentVersionId: number) {
+		const response = await fetch(`/api/${API_VERSION}/projects/${project.id}/uploads/${documentVersionId}`);
+
+		if (!response.ok) {
+			throw new Error(await getErrorMessage(response, 'Unable to download the file.'));
+		}
+
+		const blob = await response.blob();
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = '';
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+		URL.revokeObjectURL(url);
+	}
+
+	async function showDocumentDetails(documentVersionId: number) {
+		// Implement the logic to show document details, e.g., open a modal with the details
+		alert(`Showing details for document version ID: ${documentVersionId}`);
+	}
 </script>
 
 <h1>{project.name}</h1>
@@ -141,7 +164,7 @@
 <section aria-labelledby="documents-heading">
 	<h2 id="documents-heading">Documents</h2>
 
-	{#if documents.length === 0}
+	{#if documents && documents.length === 0}
 		<p>No documents uploaded yet.</p>
 	{:else}
 		<ul>
@@ -150,9 +173,14 @@
 					<strong>{document.name}</strong>
 					<p>{document.documentType}</p>
 					{#if document.currentVersion}
+						{@const currentVersion = document.currentVersion}
 						<p>
-							Version {document.currentVersion.versionNumber} · {document.currentVersion.status}
-							· {document.currentVersion.fileSize} bytes
+							Version {currentVersion.versionNumber} · {currentVersion.status}
+							· {currentVersion.fileSize} bytes
+						</p>
+						<p>
+							<button onclick={() => showDocumentDetails(currentVersion.id)}>Details</button>
+							<button onclick={() => downloadDocument(currentVersion.id)}>Download</button>
 						</p>
 					{:else}
 						<p>{document.status}</p>

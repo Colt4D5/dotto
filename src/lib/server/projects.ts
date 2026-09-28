@@ -26,7 +26,7 @@ export async function getProjectsForUser(
 	]);
 
 	return {
-		projects: userProjects,
+		results: userProjects,
 		total,
 		offset,
 		limit,
